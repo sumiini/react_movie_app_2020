@@ -1,4 +1,7 @@
 import React from 'react';
+
+
+
 import PropTypes from 'prop-types';
 
 // App component 에서 Food component로 정보를 보내고 그다음 food component에서 그 정보를 어떻게 사용하는가
@@ -28,6 +31,8 @@ const foodILike=[{id:1,name: "kimchi" ,image: "http://aeriskitchen.com/wp-conten
 // <Food fav="kimchi"/> --> 이거는 Food component에 fav라는 이름의 property를 kimchi라는 value로 준 것
 // component는 HTML을 반환하는 함수이다.
 // foodILike.map(dishi => <Food name={dish.name} />)} 에서 각 dish는 object이다.
+
+
 function App() {
   return (
      <div>
@@ -39,6 +44,10 @@ function App() {
     </div>
   );
 }
+
+
+
+
 
 export default App;
 

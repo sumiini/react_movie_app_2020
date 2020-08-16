@@ -1,7 +1,6 @@
 import React from 'react';
 
-
-
+/*
 import PropTypes from 'prop-types';
 
 // App component 에서 Food component로 정보를 보내고 그다음 food component에서 그 정보를 어떻게 사용하는가
@@ -44,10 +43,35 @@ function App() {
     </div>
   );
 }
+*/
 
+class App extends React.Component{
 
+  state={
+    count: 0
+  };
+  add=() => {
+    // state는 object이다. 따라서 setState라는 새로운 state를 받아야한다.
+    // setState 를 사용하지 않으면 새 state와 함께 render function이 호출되지 않을거다.
+    this.setState(current =>({count: current.count+1}))
+    
+  };
+  minus=() => {
+    this.setState(current =>({count: current.count-1}))
+    
 
+  };
 
+  render(){
+    return (
+    <div>
+      <h1>the number is {this.state.count}</h1>
+      <button onClick={this.add}>Add</button>
+      <button onClick={this.minus}>Minus</button>
+    </div>
+    );
+  }
+}
 
 export default App;
 

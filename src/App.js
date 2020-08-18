@@ -1,38 +1,20 @@
-import React from 'react';
-import axios from "axios";
-import Movie from "./components/Movie";
+import React from "react";
+import { HashRouter, Route } from "react-router-dom";
+import Home from "./routes/Home";
+import About from "./routes/About";
+import Detail from "./routes/Detail";
+import Navigation from "./components/Navigation";
 import "./App.css";
-class App extends React.Component{
 
-  state={
-    isLoading: true,
-    movies: []
-  }
-
-  //axios.get 은 완료되기까지 시간이 조금 필요하기때문에 await를 넣음
-  getMovies=async()=>{
-    const {data:{data:{movies}}} = await axios.get("https://yts-proxy.now.sh/list_movies.json?sort_by=rating");
-    this.setState({movies,isLoading:false})
-  }
-  componentDidMount(){
-    this.getMovies();
-  }
-  render(){
-   const {isLoading, movies}=this.state;
-   return <section className="container"> 
-     {isLoading ? <div className="loader">
-       <span className="loader__text">Loading...</span>
-
-     </div>:
-     <div className="movies">
-       {movies.map(movie => (
-         <Movie key={movie.id} id={movie.id} year={movie.year} title={movie.title} summary={movie.summary} poster={movie.medium_cover_image} genres={movie.genres}/>))}
-     </div>
-
-     }</section>
-  }
+function App() {
+  return (
+    <HashRouter>
+      <Navigation />
+      <Route path="/" exact={true} component={Home} />
+      <Route path="/about" component={About} />
+      <Route path="/movie/:id" component={Detail} />
+    </HashRouter>
+  );
 }
-export default App;
 
-// map은 array의 각 item에서 function을 실행하는 array를 가지는 javascript function이며 ,
-// 그 function의 result를 갖는 array를 반환
+export default App;
